@@ -42,8 +42,11 @@ app.delete("/api/notes/:id", function(req, res) {
   for (var i = 0; i < notes.length; i++) {
     if (chosen === notes[i].id) {
       console.log(notes[i]);
-      notes.splice(notes.indexOf(notes[i]));
-      return res.json(notes)
+      notes = notes.filter(function(note){
+        return note !== notes[i];
+      })
+      console.log(notes);
+      return res.json(notes);
     }
   }
   return res.json(false);
