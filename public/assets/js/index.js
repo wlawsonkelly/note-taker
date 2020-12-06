@@ -78,6 +78,7 @@ const handleNoteDelete = function (event) {
   }
 
   deleteNote(note.id).then(() => {
+    console.log("henlo hooman");
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -107,6 +108,7 @@ const handleRenderSaveBtn = function () {
 
 // Render's the list of note titles
 const renderNoteList = (notes) => {
+  console.log(notes);
   $noteList.empty();
 
   const noteListItems = [];

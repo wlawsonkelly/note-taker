@@ -32,23 +32,21 @@ app.post("/api/notes", function(req, res) {
   var newNote = req.body;
   console.log(newNote);
   notes.push(newNote);
-  res.json(newNote);
+  res.json(notes);
 });
 
-app.delete("/api/notes/:note", function(req, res) {
-  var chosen = req.params.note;
+app.delete("/api/notes/:id", function(req, res) {
+  var chosen = req.params.id;
   console.log(chosen);
 
   for (var i = 0; i < notes.length; i++) {
-    if (chosen.id === notes[i].id) {
-      return notes.filter(function(note){
-        return note !== notes[i];
-      })
+    if (chosen === notes[i].id) {
+      console.log(notes[i]);
+      notes.splice(notes.indexOf(notes[i]));
+      return res.json(notes)
     }
   }
-
   return res.json(false);
-
 });
 
 app.listen(PORT, function() {
